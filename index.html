@@ -238,14 +238,14 @@
 
 <script>
   /* === 링크 설정: 아래 3개만 본인 것으로 바꾸세요 === */
-  const INVITE_URL     = "https://discord.com/api/oauth2/authorize?client_id=1312263637078900816&permissions=379968&scope=bot%20applications.commands";
-  /* const KOREANBOTS_URL = "https://koreanbots.dev/bots/1312263637078900816"; */
-  const SUPPORT_URL    = "https://discord.gg/5SmMQgCg93"; /* 지원(서포트) 디스코드 서버 초대 링크로 교체 */
+  const INVITE_URL     = "https://discord.com/api/oauth2/authorize?client_id=1312263637078900816&permissions=8&scope=bot%20applications.commands";
+  const KOREANBOTS_URL = "https://koreanbots.dev/bots/1312263637078900816";
+  const SUPPORT_URL    = "https://discord.gg/mPb6EAp5EK"; /* 지원(서포트) 디스코드 서버 초대 링크로 교체 */
 
   document.querySelectorAll('[id$="-invite"]').forEach(a=>a.href=INVITE_URL);
-  /* document.querySelectorAll('[id$="-kb"]').forEach(a=>a.href=KOREANBOTS_URL); */
+  document.querySelectorAll('[id$="-kb"]').forEach(a=>a.href=KOREANBOTS_URL); 
   document.querySelectorAll('[id$="-support"]').forEach(a=>a.href=SUPPORT_URL);
-  /* document.getElementById('foot-kb').href=KOREANBOTS_URL; */
+  document.getElementById('foot-kb').href=KOREANBOTS_URL; 
   document.getElementById('foot-support').href=SUPPORT_URL;
   document.getElementById('foot-invite').href=INVITE_URL;
 </script>
