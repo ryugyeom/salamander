@@ -2,252 +2,624 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>강화 RPG — 디스코드 성장형 RPG 게임봇</title>
-<meta name="description" content="조력자를 강화하고 던전을 정복하며 끝없이 강해지는 디스코드 RPG 게임봇! 강화·각성·환생, 무한의 탑, PvP 아레나, 길드, 은행·주식·부동산 경제, 낚시·미니게임까지 — 전부 무료." />
-<meta property="og:title" content="강화 RPG — 디스코드 성장형 RPG 게임봇" />
-<meta property="og:description" content="강화·각성·환생으로 끝없이 강해지는 디스코드 RPG! 던전·무한탑·PvP·길드·경제(은행/주식/부동산)·미니게임 — 전부 무료." />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>도롱뇽 · 강화 RPG — 디스코드에서 돌아가는 성장형 RPG</title>
+<meta name="description" content="강화 · 각성 · 환생으로 끝없이 강해지는 디스코드 RPG 게임봇. 던전 · 무한의 탑 · 길드 · 주식 · 부동산 · 가챠까지 275개 명령어로 즐기는 하나의 세계. 완전 무료." />
+<meta name="theme-color" content="#f2a33c" />
+<link rel="icon" href="./assets/favicon.png" />
+<link rel="apple-touch-icon" href="./assets/mark.png" />
+
 <meta property="og:type" content="website" />
-<meta name="theme-color" content="#ffd700" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet" />
-<style>
-  :root{
-    --gold:#ffd700; --purple:#9b59b6; --bg:#0e0f13; --bg2:#16181f; --card:#1c1f29;
-    --line:#2b2f3a; --text:#e8eaf0; --muted:#9aa0ad; --green:#57f287; --blue:#5865f2;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{font-family:'Noto Sans KR',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased}
-  a{color:inherit;text-decoration:none}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;border-radius:12px;padding:14px 26px;transition:transform .15s ease,box-shadow .15s ease;cursor:pointer;border:0;font-size:1rem}
-  .btn:hover{transform:translateY(-2px)}
-  .btn-gold{background:linear-gradient(135deg,#ffd700,#ffb300);color:#1a1300;box-shadow:0 8px 24px rgba(255,215,0,.25)}
-  .btn-ghost{background:transparent;color:var(--text);border:1.5px solid var(--line)}
-  .btn-ghost:hover{border-color:var(--gold)}
+<meta property="og:site_name" content="도롱뇽 · 강화 RPG" />
+<meta property="og:title" content="도롱뇽 · 강화 RPG — 강화하고, 부수고, 다시 강해진다" />
+<meta property="og:description" content="던전 · 무한의 탑 · 길드 · 주식 · 가챠까지. 디스코드 안에서 돌아가는 하나의 세계. 완전 무료." />
+<meta property="og:image" content="./assets/og.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
 
-  /* header */
-  header{position:sticky;top:0;z-index:50;background:rgba(14,15,19,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-  .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
-  .logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:1.15rem}
-  .logo .mark{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--gold),var(--purple));display:grid;place-items:center;font-size:1.1rem}
-  .nav-links{display:flex;gap:24px;align-items:center;color:var(--muted);font-weight:500}
-  .nav-links a:hover{color:var(--text)}
-  .nav .btn{padding:9px 18px;font-size:.92rem}
-  @media(max-width:720px){.nav-links{display:none}}
-
-  /* hero */
-  .hero{position:relative;text-align:center;padding:90px 0 70px;overflow:hidden}
-  .hero::before{content:"";position:absolute;inset:0;background:
-     radial-gradient(600px 300px at 50% -10%,rgba(255,215,0,.16),transparent 70%),
-     radial-gradient(500px 320px at 15% 30%,rgba(155,89,182,.16),transparent 70%);z-index:-1}
-  .badge{display:inline-block;font-size:.82rem;font-weight:700;color:var(--gold);background:rgba(255,215,0,.1);border:1px solid rgba(255,215,0,.3);padding:6px 14px;border-radius:999px;margin-bottom:22px}
-  .hero h1{font-size:clamp(2.2rem,6vw,3.6rem);font-weight:900;line-height:1.2;letter-spacing:-.02em}
-  .hero h1 .grad{background:linear-gradient(120deg,var(--gold),#ff9d00);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .hero p.sub{color:var(--muted);font-size:clamp(1rem,2.4vw,1.2rem);margin:18px auto 34px;max-width:640px}
-  .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-  .stats{display:flex;gap:34px;justify-content:center;flex-wrap:wrap;margin-top:54px;color:var(--muted)}
-  .stat b{display:block;font-size:1.7rem;color:var(--text);font-weight:900}
-
-  /* sections */
-  section{padding:70px 0}
-  .sec-head{text-align:center;margin-bottom:46px}
-  .sec-head .tag{color:var(--gold);font-weight:700;font-size:.9rem;letter-spacing:.06em}
-  .sec-head h2{font-size:clamp(1.6rem,4vw,2.3rem);font-weight:900;margin-top:8px}
-  .sec-head p{color:var(--muted);margin-top:10px}
-
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  @media(max-width:880px){.grid{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:560px){.grid{grid-template-columns:1fr}}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;transition:transform .15s ease,border-color .15s ease}
-  .card:hover{transform:translateY(-4px);border-color:rgba(255,215,0,.4)}
-  .card .ico{font-size:1.9rem}
-  .card h3{margin:12px 0 6px;font-size:1.15rem;font-weight:700}
-  .card p{color:var(--muted);font-size:.95rem}
-
-  /* steps */
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  @media(max-width:720px){.steps{grid-template-columns:1fr}}
-  .step{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:26px;position:relative}
-  .step .n{position:absolute;top:-14px;left:22px;width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--gold),var(--purple));color:#1a1300;font-weight:900;display:grid;place-items:center}
-  .step h3{margin:14px 0 6px}
-  .step code{background:#0c0d11;color:var(--gold);padding:2px 8px;border-radius:6px;font-size:.9em}
-  .step p{color:var(--muted);font-size:.95rem}
-
-  /* commands */
-  .cmds{background:var(--bg2);border:1px solid var(--line);border-radius:18px;padding:10px;max-width:760px;margin:0 auto}
-  .cmd-row{display:flex;align-items:center;gap:14px;padding:13px 18px;border-bottom:1px solid var(--line)}
-  .cmd-row:last-child{border-bottom:0}
-  .cmd-row code{color:var(--gold);font-weight:700;min-width:130px}
-  .cmd-row span{color:var(--muted);font-size:.95rem}
-
-  /* cta band */
-  .band{background:linear-gradient(135deg,rgba(255,215,0,.12),rgba(155,89,182,.12));border:1px solid var(--line);border-radius:24px;text-align:center;padding:56px 24px}
-  .band h2{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900}
-  .band p{color:var(--muted);margin:12px 0 26px}
-
-  footer{border-top:1px solid var(--line);padding:40px 0;color:var(--muted);font-size:.9rem}
-  .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
-  .foot a{color:var(--muted)} .foot a:hover{color:var(--text)}
-  .credit{font-size:.82rem;color:#6b7180;margin-top:14px;line-height:1.8}
-</style>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css" />
+<link rel="stylesheet" href="./assets/site.css" />
+<!-- 등장 애니메이션은 JS 가 살아 있을 때만 건다. 이 한 줄이 없으면 스크립트가
+     막힌 환경에서 .rv 가 opacity:0 인 채 남아 **페이지 전체가 백지**로 보인다. -->
+<script>document.documentElement.className += " js";</script>
 </head>
 <body>
-<header>
+<div class="glow"></div>
+
+<!-- ══════════ 헤더 ══════════ -->
+<header id="top">
   <div class="wrap nav">
-    <div class="logo"><span class="mark">⚔️</span> 강화 RPG</div>
-    <nav class="nav-links">
-      <a href="#features">콘텐츠</a>
+    <a class="brand" href="#top">
+      <img src="./assets/mark.png" alt="도롱뇽 마스코트" />
+      <b>도롱뇽</b><span class="tagchip">강화 RPG</span>
+    </a>
+    <button class="burger" id="burger" aria-label="메뉴 열기">☰</button>
+    <nav class="links" id="links">
+      <a href="#contents">콘텐츠</a>
+      <a href="#gacha">가챠</a>
       <a href="#economy">경제</a>
-      <a href="#start">시작하기</a>
+      <a href="#season">시즌</a>
       <a href="#commands">명령어</a>
+      <a href="#faq">FAQ</a>
     </nav>
-    <a class="btn btn-gold" href="#invite-link" id="nav-invite">봇 초대하기</a>
+    <a class="btn btn-primary btn-sm go" data-link="invite" href="#">서버에 초대</a>
   </div>
 </header>
 
-<!-- HERO -->
+<!-- ══════════ 히어로 ══════════ -->
 <section class="hero">
   <div class="wrap">
-    <span class="badge">🎮 디스코드 성장형 RPG · 전부 무료</span>
-    <h1>조력자를 강화하고<br><span class="grad">끝없이 강해지세요</span></h1>
-    <p class="sub">강화 → 각성 → 환생으로 무한히 성장하는 디스코드 RPG 게임봇.<br>던전·무한의 탑·PvP·길드·경제 시스템·미니게임까지, 모든 콘텐츠를 친구들과 함께!</p>
-    <div class="cta">
-      <a class="btn btn-gold" href="#invite-link" id="hero-invite">⚔️ 서버에 초대하기</a>
-      <a class="btn btn-ghost" href="#koreanbots-link" id="hero-kb">📋 한디리에서 보기</a>
+    <div class="hero-grid">
+      <div>
+        <span class="badge"><i class="dot"></i> 디스코드 성장형 RPG · 과금 요소 없음</span>
+        <h1>강화하고, 부수고,<br><span class="grad">다시 강해진다</span></h1>
+        <p class="lead">
+          +32강 <b>만강</b>이 끝이 아닙니다. 각성 · 환생 · 소울강화로 한계를 계속 밀어내고,
+          던전과 무한의 탑을 부수고, 길드를 세우고, 주식과 부동산으로 판을 굴리세요.
+          <b>디스코드 채팅창 하나</b>에서 전부 돌아갑니다.
+        </p>
+        <div class="cta">
+          <a class="btn btn-primary" data-link="invite" href="#">⚔️ 내 서버에 초대하기</a>
+          <a class="btn btn-ghost" data-link="koreanbots" href="#">한디리에서 보기</a>
+        </div>
+        <div class="trust">
+          <span>✅ <b>/ 슬래시 · ! 접두사</b> 모두 지원</span>
+          <span>🇰🇷 <b>100% 한국어</b></span>
+          <span>📱 <b>모바일</b>에서도 그대로</span>
+        </div>
+      </div>
+
+      <!-- 실제 `!내정보` 화면을 그대로 옮긴 목업 -->
+      <div class="hero-mock">
+        <img class="float f1" src="./assets/art/helpers/h01.jpg" alt="조력자 일러스트" loading="lazy" />
+        <img class="float f2" src="./assets/art/equip/e01.jpg" alt="장비 일러스트" loading="lazy" />
+        <div class="dc">
+          <div class="dc-bar"><span class="hash">#</span> 게임 <span class="dots"><i></i><i></i><i></i></span></div>
+          <div class="dc-body">
+            <div class="dc-msg">
+              <img class="dc-av" src="./assets/mark.png" alt="" />
+              <div class="dc-main">
+                <div class="dc-name"><b>도롱뇽</b><span class="dc-tag">앱</span><span class="dc-time">오늘 오후 9:14</span></div>
+                <div class="embed gold">
+                  <img class="thumb" src="./assets/art/helpers/h05.jpg" alt="" loading="lazy" />
+                  <div class="e-title">👤 용사 님의 모험가 시트</div>
+                  <div class="e-power">🔥 전투력 12,954</div>
+                  <div class="e-desc">🏅 『 <b>뉴비</b> 』</div>
+                  <div class="e-fields">
+                    <div class="e-f"><div class="fn">🌟 레벨</div><div class="fv"><span class="k">Lv.37</span></div></div>
+                    <div class="e-f"><div class="fn">🏰 길드</div><div class="fv">없음</div></div>
+                    <div class="e-f"><div class="fn">🧭 직업</div><div class="fv">⚔️ 검객 (T4)</div></div>
+                    <div class="e-f full"><div class="fn">[ ⚔️ 장비 ]</div><div class="fv">
+                      🟡 <b>+21강 조력자</b> ⭐2 — ATK <span class="k">8,486</span><br>
+                      <span class="mono"><span class="bar-on">▰▰▰▰▰</span><span class="bar-off">▱▱▱</span></span> +21/32
+                    </div></div>
+                    <div class="e-f full"><div class="fn">[ 💰 경제 ]</div><div class="fv">
+                      현금 <span class="k">84.32억</span> · 순자산 <b>84.32억</b>원 · 💎 <span class="k">42</span>
+                    </div></div>
+                  </div>
+                  <div class="e-foot">🦎 도롱뇽 · !도움말 또는 /도움말</div>
+                </div>
+                <div class="dc-btns">
+                  <span class="dc-btn pri">강화</span><span class="dc-btn">갑옷강화</span>
+                  <span class="dc-btn">일일</span><span class="dc-btn">자랑</span><span class="dc-btn">허브</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="stats">
-      <div class="stat"><b>80+</b>슬래시 명령어</div>
-      <div class="stat"><b>7</b>직업 트리</div>
-      <div class="stat"><b>∞</b>환생 성장</div>
-      <div class="stat"><b>100%</b>무료</div>
-    </div>
+
+    <!-- 숫자는 전부 bot-data.js(봇에서 추출)에서 주입 -->
+    <div class="statbar rv" id="statbar"></div>
   </div>
 </section>
 
-<!-- FEATURES -->
-<section id="features">
+<!-- ══════════ 한눈에 ══════════ -->
+<section class="alt" id="overview">
   <div class="wrap">
-    <div class="sec-head">
-      <div class="tag">CONTENTS</div>
-      <h2>방대한 콘텐츠, 끝없는 재미</h2>
-      <p>혼자서도, 친구들과 함께도 즐길 수 있는 깊이 있는 게임 시스템</p>
+    <div class="sec-head rv">
+      <div class="kicker">Why 도롱뇽</div>
+      <h2>디스코드 RPG 가 여기까지 갑니다</h2>
+      <p>전투만 있는 봇도, 출석만 있는 봇도 아닙니다. 성장 · 전투 · 경제 · 수집 · 사회가 서로 맞물려 돌아갑니다.</p>
     </div>
-    <div class="grid">
-      <div class="card"><div class="ico">⚒️</div><h3>강화 · 각성 · 환생</h3><p>조력자와 갑옷을 강화하고, 만강 후 각성·환생으로 한계를 넘어 영구히 강해집니다.</p></div>
-      <div class="card"><div class="ico">🗼</div><h3>던전 & 무한의 탑</h3><p>승률을 미리 보고 도전! 솔로 던전과 끝없이 올라가는 무한의 탑, 결과 후 '다시 도전' 버튼까지.</p></div>
-      <div class="card"><div class="ico">🏟️</div><h3>PvP 아레나 & 길드</h3><p>ELO 랭크전 시즌제 아레나, 길드 생성·버프·레이드로 함께 성장하는 협동 콘텐츠.</p></div>
-      <div class="card"><div class="ico">🐾</div><h3>펫 · 룬 · 장비 세트</h3><p>펫을 모으고 성장시키고, 룬·장비 세트 효과를 맞춰 전투력을 극대화하세요.</p></div>
-      <div class="card"><div class="ico">🎣</div><h3>낚시 · 광질 · 채집</h3><p>전투 말고도 부자가 되는 길! 낚시·광질·유적탐사·탐험으로 도감을 채우고 골드를 법니다.</p></div>
-      <div class="card"><div class="ico">🎲</div><h3>다양한 미니게임</h3><p>슬롯·도박·코인·하이로우·운세도박과 전 서버 공동 복권 '월드 잭팟'까지.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ECONOMY -->
-<section id="economy" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="tag">ECONOMY</div>
-      <h2>💹 진짜 경제 시스템</h2>
-      <p>현금부터 투자까지 — 깊이 있는 인게임 경제를 직접 굴려보세요</p>
-    </div>
-    <div class="grid">
-      <div class="card"><div class="ico">🏦</div><h3>은행 · 이자 · 대출</h3><p>저금하면 매일 이자! 전투력(신용등급)이 높을수록 이자율↑·대출 한도↑.</p></div>
-      <div class="card"><div class="ico">📈</div><h3>주식 투자</h3><p>15분마다 변동하는 6개 종목에 투자. 손익을 추적하며 저점매수·고점매도!</p></div>
-      <div class="card"><div class="ico">🏢</div><h3>부동산 패시브 수입</h3><p>포장마차부터 리조트 호텔까지, 사업체로 시간당 골드를 자동으로 벌어들이세요.</p></div>
-      <div class="card"><div class="ico">🏪</div><h3>실시간 시세 상점</h3><p>15분마다 변동하는 암시장 시세! 🔴상승 🔵하락을 보고 싸게 사서 비싸게 되팔기.</p></div>
-      <div class="card"><div class="ico">🤝</div><h3>장터 · 선물 · 송금</h3><p>유저끼리 아이템을 직거래하고, 친구에게 재화를 선물하거나 현금을 송금.</p></div>
-      <div class="card"><div class="ico">🎰</div><h3>월드 잭팟</h3><p>전 서버가 함께하는 공동 복권. 티켓을 모아 매일 추첨, 잭팟을 독식하세요!</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- START -->
-<section id="start">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="tag">GET STARTED</div>
-      <h2>3분이면 시작!</h2>
-      <p>봇을 초대하고 아래 3단계만 따라 하면 끝</p>
-    </div>
-    <div class="steps">
-      <div class="step"><div class="n">1</div><h3>시작하기</h3><p><code>!시작</code> 또는 <code>/시작</code> 으로 게임 안내와 <b>스타터팩</b>을 받으세요.</p></div>
-      <div class="step"><div class="n">2</div><h3>매일 보상</h3><p><code>!일일</code> 버튼 한 번으로 출석·지원금·룰렛·부동산 수금까지 한 번에!</p></div>
-      <div class="step"><div class="n">3</div><h3>강해지기</h3><p><code>!강화</code> → <code>!던전</code> → <code>!도움말</code> 로 모든 콘텐츠를 탐험하세요.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- COMMANDS -->
-<section id="commands" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="tag">COMMANDS</div>
-      <h2>핵심 명령어 미리보기</h2>
-      <p><code style="color:var(--gold)">!</code> 또는 <code style="color:var(--gold)">/</code>(슬래시) 둘 다 사용 가능 · 전체는 <code style="color:var(--gold)">/도움말</code></p>
-    </div>
-    <div class="cmds">
-      <div class="cmd-row"><code>/시작</code><span>게임 안내 + 스타터팩 받기 (처음이라면!)</span></div>
-      <div class="cmd-row"><code>/일일</code><span>매일 받을 보상을 한 화면에서 버튼으로 수령</span></div>
-      <div class="cmd-row"><code>/강화</code><span>조력자(공격력) 강화 · /갑옷강화 (체력)</span></div>
-      <div class="cmd-row"><code>/던전</code><span>적 스펙·승률 확인 후 전투 시작</span></div>
-      <div class="cmd-row"><code>/무한탑</code><span>끝없이 올라가는 무한의 탑 등반</span></div>
-      <div class="cmd-row"><code>/주식</code><span>주식 투자 (15분마다 시세 변동)</span></div>
-      <div class="cmd-row"><code>/부동산</code><span>사업체로 패시브 수입 벌기</span></div>
-      <div class="cmd-row"><code>/도움말</code><span>드롭다운 메뉴로 전체 명령어 가이드</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA BAND -->
-<section>
-  <div class="wrap">
-    <div class="band">
-      <h2>지금 바로 모험을 시작하세요 ⚔️</h2>
-      <p>설치도, 결제도 필요 없어요. 서버에 초대하고 <code>!시작</code> 만 입력하면 끝!</p>
-      <div class="cta">
-        <a class="btn btn-gold" href="#invite-link" id="band-invite">⚔️ 서버에 초대하기</a>
-        <a class="btn btn-ghost" href="#koreanbots-link" id="band-kb">📋 한디리에서 보기</a>
+    <div class="grid g3 rv">
+      <div class="card">
+        <div class="ico">♾️</div>
+        <h3>끝이 없는 성장 곡선</h3>
+        <p>+32강 만강 → 각성 10단계 → 환생 → 소울강화 → 룬 6소켓 → 직업 7트리. 축이 <b>10개 넘게</b> 쌓여서, 오늘의 한계가 내일의 출발선이 됩니다.</p>
+        <div class="tags"><code>!강화</code><code>!각성</code><code>!환생</code><code>!환생상점</code></div>
+      </div>
+      <div class="card">
+        <div class="ico">🎨</div>
+        <h3>전부 손으로 그린 게임</h3>
+        <p>조력자 초상 36종, 장비 일러스트 51종을 포함해 <b id="n-img">194</b>장의 아트와 연출 GIF 10종. 뽑기는 두드리기 모션으로 열리고, 유니크 장비는 <b>제작하는 순간 그림이 생성</b>됩니다.</p>
+        <div class="tags"><code>!조력자 뽑기</code><code>!장비 정보</code><code>!제작</code></div>
+      </div>
+      <div class="card">
+        <div class="ico">🏦</div>
+        <h3>진짜로 굴러가는 경제</h3>
+        <p>중앙은행 기준금리, 상업은행 선택, 정기예금, 신용등급 대출, 8종목 주식(길드 주식 포함), 8단계 부동산, 유저 장터까지. 숫자가 <b>서로를 참조</b>합니다.</p>
+        <div class="tags"><code>!자산</code><code>!주식</code><code>!부동산</code><code>!장터</code></div>
+      </div>
+      <div class="card">
+        <div class="ico">🖱️</div>
+        <h3>명령어를 외울 필요가 없음</h3>
+        <p><code>!허브</code> 한 번이면 메시지 하나에서 모든 콘텐츠로 이동합니다. 화면이 <b>제자리에서 바뀌어</b> 채팅이 쌓이지 않고, 조건이 안 되면 갈 곳을 버튼으로 알려줍니다.</p>
+        <div class="tags"><code>!허브</code><code>!일일</code><code>!받기</code></div>
+      </div>
+      <div class="card">
+        <div class="ico">🏰</div>
+        <h3>서버끼리 겨루는 사회</h3>
+        <p>길드 생성 · 계급 · 버프 · 레이드 · 길드전, 그리고 길드가 <b>주식을 발행</b>해 자본을 조달합니다. 전 서버 월드 채팅과 공동 복권으로 옆 서버와도 이어집니다.</p>
+        <div class="tags"><code>!길드</code><code>!아레나</code><code>!전체</code></div>
+      </div>
+      <div class="card">
+        <div class="ico">🗓️</div>
+        <h3>2개월마다 새 출발</h3>
+        <p>시즌이 돌면 진행도는 리셋되지만 <b>펫 · 룬 · 도감 · 보석 · 칭호는 그대로</b>. 지난 시즌의 유리함은 꼼수가 아니라 <b>기록과 노력</b>으로만 이어집니다.</p>
+        <div class="tags"><code>!시즌</code><code>!시즌패스</code><code>!랭킹</code></div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ══════════ 콘텐츠 탭 ══════════ -->
+<section id="contents">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="kicker">Contents</div>
+      <h2>무엇을 하게 되나요</h2>
+      <p>실제 인게임 화면 그대로입니다. 탭을 눌러 확인해 보세요.</p>
+    </div>
+
+    <div class="tabs rv">
+      <button class="tab on" data-tab="grow">⚒️ 성장</button>
+      <button class="tab" data-tab="fight">⚔️ 전투</button>
+      <button class="tab" data-tab="life">🎣 생활</button>
+      <button class="tab" data-tab="social">🏰 길드 · PvP</button>
+    </div>
+
+    <!-- 성장 -->
+    <div class="panel on" id="tab-grow">
+      <div class="panel-grid">
+        <div>
+          <h3>만강은 시작일 뿐입니다</h3>
+          <p>강화는 실패하면 떨어지고, 일정 구간부터는 <b>파괴</b>도 납니다. 보호권 · 연마제 · 행운부적으로 위험을 사서 줄이는 것까지가 게임입니다.</p>
+          <ul class="plist">
+            <li><span class="ic">🗡️</span><span><b>강화 +32 만강</b> — 조력자(ATK) · 갑옷(HP) 각각. 단계별 확률표는 <code>!강화표</code>에 전부 공개</span></li>
+            <li><span class="ic">🌟</span><span><b>각성 10단계</b> — 만강 이후 해금. 별(⭐) 하나마다 배율이 붙습니다</span></li>
+            <li><span class="ic">♻️</span><span><b>환생</b> — 전부 되돌리는 대신 영구 배율과 환생석을 얻습니다</span></li>
+            <li><span class="ic">🧭</span><span><b>직업 7트리 × 스킬 4개</b> — 검 · 방 · 암 · 궁 · 마 · 혈 · 상</span></li>
+            <li><span class="ic">💠</span><span><b>룬 6계열 · 5티어 · 6소켓</b> — 같은 계열로 채우면 세트 효과</span></li>
+          </ul>
+          <a class="btn btn-ghost btn-sm" href="#commands">성장 명령어 보기</a>
+        </div>
+        <div class="dc">
+          <div class="dc-bar"><span class="hash">#</span> 게임 <span class="dots"><i></i><i></i><i></i></span></div>
+          <div class="dc-body"><div class="dc-msg">
+            <img class="dc-av" src="./assets/mark.png" alt="" />
+            <div class="dc-main">
+              <div class="dc-name"><b>도롱뇽</b><span class="dc-tag">앱</span><span class="dc-time">오후 9:15</span></div>
+              <div class="embed">
+                <div class="e-title">⚒️ 조력자 강화 — <span class="mono">+21 → +22</span></div>
+                <div class="e-desc"><span class="mono"><span class="bar-on">▰▰▰▰▰</span><span class="bar-off">▱▱▱</span></span> 만강까지 11단계</div>
+                <div class="e-fields">
+                  <div class="e-f"><div class="fn">✅ 성공</div><div class="fv"><b>38%</b></div></div>
+                  <div class="e-f"><div class="fn">⬇️ 하락</div><div class="fv">50%</div></div>
+                  <div class="e-f"><div class="fn">💥 파괴</div><div class="fv">12%</div></div>
+                  <div class="e-f full"><div class="fn">🧪 소모품</div><div class="fv">
+                    🛡️ 보호권 <span class="k">2</span> · ✨ 연마제 <span class="k">5</span> · 🍀 행운부적 <span class="k">1</span> <span style="color:#949ba4">(+10%)</span>
+                  </div></div>
+                  <div class="e-f full"><div class="fn">💰 비용</div><div class="fv">1,250만원 · 보유 <span class="k">84.32억</span></div></div>
+                </div>
+                <div class="e-foot">확률표 전체는 !강화표 · 도롱뇽</div>
+              </div>
+              <div class="dc-btns">
+                <span class="dc-btn pri">강화하기</span><span class="dc-btn ok">보호권 사용</span>
+                <span class="dc-btn">10회 반복</span><span class="dc-btn">닫기</span>
+              </div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 전투 -->
+    <div class="panel" id="tab-fight">
+      <div class="panel-grid">
+        <div>
+          <h3>이길 수 있는지 먼저 보여줍니다</h3>
+          <p>던전도 탑도 <b>적 스펙과 예상 승률을 먼저 띄운 뒤</b> 도전 여부를 묻습니다. 모르고 전멸하는 일이 없습니다.</p>
+          <ul class="plist">
+            <li><span class="ic">🐲</span><span><b>솔로 던전 5단계</b> — 하급 80만원부터 심연 12억원까지</span></li>
+            <li><span class="ic">🗼</span><span><b>무한의 탑</b> — 층마다 수호자가 바뀌는 <b>13가지 테마</b>, 5층·10층마다 보너스</span></li>
+            <li><span class="ic">👹</span><span><b>월드 보스</b> — 서버 전체가 함께 때리고 기여도로 보상</span></li>
+            <li><span class="ic">🗺️</span><span><b>탐험 6구역</b> — 폐허 계곡에서 공허 균열까지, 파견 후 수령</span></li>
+            <li><span class="ic">🎫</span><span><b>소탕</b> — 이미 깬 구간은 소탕권으로 즉시 처리</span></li>
+          </ul>
+          <a class="btn btn-ghost btn-sm" href="#commands">전투 명령어 보기</a>
+        </div>
+        <div class="dc">
+          <div class="dc-bar"><span class="hash">#</span> 게임 <span class="dots"><i></i><i></i><i></i></span></div>
+          <div class="dc-body"><div class="dc-msg">
+            <img class="dc-av" src="./assets/mark.png" alt="" />
+            <div class="dc-main">
+              <div class="dc-name"><b>도롱뇽</b><span class="dc-tag">앱</span><span class="dc-time">오후 9:16</span></div>
+              <div class="embed blue">
+                <div class="e-title">🔍 🐲 상급 던전 — 적 정보</div>
+                <div class="e-desc">📌 권장: <b>+25강~</b></div>
+                <div class="e-fields">
+                  <div class="e-f"><div class="fn">👹 적 스펙</div><div class="fv">HP <span class="k">150,000</span><br>ATK <span class="k">5,000</span></div></div>
+                  <div class="e-f"><div class="fn">🧝 내 스펙</div><div class="fv">HP <span class="k">8,591</span><br>ATK <span class="k">8,486</span></div></div>
+                  <div class="e-f"><div class="fn">🗓️ 오늘 정량</div><div class="fv"><span class="k">10/10</span>회</div></div>
+                  <div class="e-f full"><div class="fn">📊 예상 승률</div><div class="fv" style="color:#ed4245">🔴 매우 불리 <b style="color:#ed4245">0%</b> ⬛⬛⬛⬛⬛⬛⬛⬛</div></div>
+                  <div class="e-f full"><div class="fn">🎁 보상 (승리 시)</div><div class="fv">💰 <span class="k">6000만</span> · 💠 보스파편 <span class="k">10</span> · ✨절대부적 15%<br>⚔️ 장비 드롭 12%</div></div>
+                </div>
+                <div class="e-foot">도전: !던전 상급</div>
+              </div>
+              <div class="dc-btns"><span class="dc-btn pri">⚔️ 전투 시작</span><span class="dc-btn">취소</span></div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 생활 -->
+    <div class="panel" id="tab-life">
+      <div class="panel-grid">
+        <div>
+          <h3>칼을 들지 않아도 부자가 됩니다</h3>
+          <p>전투가 내키지 않는 날에도 할 일이 있습니다. 낚시와 광질은 도감으로 쌓이고, 도감을 채우면 영구 보상이 붙습니다.</p>
+          <ul class="plist">
+            <li><span class="ic">🎣</span><span><b>낚시 48종</b> — 낚싯대를 키우면 잡히는 어종이 달라집니다</span></li>
+            <li><span class="ic">⛏️</span><span><b>광질 44종</b> — 캔 광석은 제작 재료이자 판매 수익</span></li>
+            <li><span class="ic">🏛️</span><span><b>유적 탐사</b> — 깊이 들어갈수록 보상이 커지고 귀환 판단이 중요해집니다</span></li>
+            <li><span class="ic">🐾</span><span><b>펫 32종</b> — 수집 · 레벨업 · 장착 효과</span></li>
+            <li><span class="ic">🏆</span><span><b>업적 63개 · 칭호 68종</b> — 전투력에 붙는 보너스가 달린 칭호도 있습니다</span></li>
+          </ul>
+          <a class="btn btn-ghost btn-sm" href="#commands">생활 명령어 보기</a>
+        </div>
+        <div class="dc">
+          <div class="dc-bar"><span class="hash">#</span> 게임 <span class="dots"><i></i><i></i><i></i></span></div>
+          <div class="dc-body"><div class="dc-msg">
+            <img class="dc-av" src="./assets/mark.png" alt="" />
+            <div class="dc-main">
+              <div class="dc-name"><b>도롱뇽</b><span class="dc-tag">앱</span><span class="dc-time">오후 9:18</span></div>
+              <div class="embed purple">
+                <div class="e-title">🗼 무한의 탑</div>
+                <div class="e-desc">🏆 통산 최고 <b>0층</b> · 다음 도전 <b>1층</b><br>🧝 내 스펙: HP <span class="k">8,591</span> · ATK <span class="k">10,183</span></div>
+                <div class="e-fields">
+                  <div class="e-f full"><div class="fn">다음 1층 — 🗿 이끼 낀 석상병</div><div class="fv">
+                    HP <span class="k">3,500</span> · ATK <span class="k">70</span><br>
+                    📊 <span style="color:#57f287">🟢 매우 유리 <b style="color:#57f287">100%</b></span> 🟩🟩🟩🟩🟩🟩🟩🟩<br>
+                    🎁 돌파 보상 💰 <span class="k">50만</span> + 룬/장비 확률
+                  </div></div>
+                  <div class="e-f full"><div class="fn">💡 다음 보너스 층</div><div class="fv"><b>5층</b> (💠파편) · 10층마다 절대부적 + 보석</div></div>
+                </div>
+                <div class="e-foot">강해질수록 더 높은 층에 도전하세요!</div>
+              </div>
+              <div class="dc-btns"><span class="dc-btn pri">1층 도전!</span><span class="dc-btn">던전</span><span class="dc-btn">내정보</span><span class="dc-btn">허브</span></div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 소셜 -->
+    <div class="panel" id="tab-social">
+      <div class="panel-grid">
+        <div>
+          <h3>혼자 강해지는 데는 한계가 있습니다</h3>
+          <p>길드는 단순한 채팅방이 아닙니다. 자본을 모으고, 버프를 사고, 주식을 발행해 <b>외부 자금을 끌어옵니다.</b></p>
+          <ul class="plist">
+            <li><span class="ic">🏰</span><span><b>길드</b> — 생성 · 계급 · 기여도 · 출석 · 전용 상점 · 버프</span></li>
+            <li><span class="ic">🐉</span><span><b>길드 레이드 · 길드전</b> — 길드원이 함께 때리고 선포로 맞붙습니다</span></li>
+            <li><span class="ic">📈</span><span><b>길드 주식 발행</b> — 시세에 따라 길드가 이익도 손해도 봅니다</span></li>
+            <li><span class="ic">🏟️</span><span><b>PvP 아레나</b> — ELO 기반 시즌 랭크전</span></li>
+            <li><span class="ic">💬</span><span><b>전 서버 월드 채팅</b> · 랭킹 1:1 비교 · 매주 TOP3 자동 보상</span></li>
+          </ul>
+          <a class="btn btn-ghost btn-sm" href="#commands">길드 명령어 보기</a>
+        </div>
+        <div class="dc">
+          <div class="dc-bar"><span class="hash">#</span> 게임 <span class="dots"><i></i><i></i><i></i></span></div>
+          <div class="dc-body"><div class="dc-msg">
+            <img class="dc-av" src="./assets/mark.png" alt="" />
+            <div class="dc-main">
+              <div class="dc-name"><b>도롱뇽</b><span class="dc-tag">앱</span><span class="dc-time">오후 9:22</span></div>
+              <div class="embed">
+                <div class="e-title">🏰 도롱뇽 기사단 — Lv.7</div>
+                <div class="e-desc">👑 길드장 <b>용사</b> · 길드원 <span class="k">14/20</span></div>
+                <div class="e-fields">
+                  <div class="e-f"><div class="fn">💰 자본</div><div class="fv"><b>412억</b></div></div>
+                  <div class="e-f"><div class="fn">📈 티커</div><div class="fv"><span class="k">도기사</span> ▲ 2.4%</div></div>
+                  <div class="e-f"><div class="fn">🎯 기여</div><div class="fv"><span class="k">18,420</span>P</div></div>
+                  <div class="e-f full"><div class="fn">✨ 활성 버프</div><div class="fv">⚔️ 공격력 +12% · 💰 골드 획득 +8% <span style="color:#949ba4">(남은 시간 6시간)</span></div></div>
+                  <div class="e-f full"><div class="fn">🐉 레이드</div><div class="fv">심연의 마신 바알 — HP <span class="k">38%</span> 남음 · 참여 <span class="k">9</span>명</div></div>
+                </div>
+                <div class="e-foot">🦎 도롱뇽 · !길드</div>
+              </div>
+              <div class="dc-btns"><span class="dc-btn pri">레이드 참전</span><span class="dc-btn">길드 상점</span><span class="dc-btn">기부</span><span class="dc-btn">길드챗</span></div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 가챠 ══════════ -->
+<section class="alt" id="gacha">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="kicker">Gacha</div>
+      <h2>뽑기는 결과창이 아니라 <span class="grad">연출</span>입니다</h2>
+      <p>상자를 두드리고, 빛이 새어 나오고, 등급에 따라 터지는 모양이 달라집니다. 급할 땐 스킵도 됩니다.</p>
+    </div>
+    <div class="gacha-grid rv">
+      <div class="gacha-gif"><img src="./assets/gacha-mythic.gif" alt="신화 등급 개봉 연출" loading="lazy" /></div>
+      <div>
+        <h3 style="margin:0 0 6px;font-size:1.3rem;font-weight:900">조력자 뽑기 확률 — 전부 공개</h3>
+        <p style="color:var(--muted);margin:0 0 20px">확률은 숨기지 않습니다. 봇 안에서도 <code>!확률</code>로 언제든 볼 수 있습니다.</p>
+        <div class="rates" id="rates"></div>
+        <div class="note">
+          🧲 <b>천장 보장</b> — 전설 이상이 <b id="n-pity">50</b>회 연속 안 나오면 다음 뽑기에서 <b>전설 이상 확정</b>.
+          중복이 떠도 보스파편으로 환급되니 버려지는 뽑기가 없습니다.
+        </div>
+        <div class="note" style="border-left-color:var(--purple)">
+          🎨 <b>유니크 제작</b> — 원하는 장비를 설명하면 능력치와 이름이 만들어지고,
+          <b>그 자리에서 전용 일러스트가 생성</b>되어 장비 카드에 박힙니다. 세상에 하나뿐인 장비가 됩니다.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 아트 갤러리 ══════════ -->
+<section id="art">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="kicker">Artwork</div>
+      <h2>전부 인게임에 들어 있는 그림입니다</h2>
+      <p>조력자 <b id="n-helpers">36</b>종 · 장비 <b id="n-equips">51</b>종. <code>!장비 정보</code>로 카드를 펼치면 이 그림이 그대로 뜹니다.</p>
+    </div>
+    <div class="gallery rv" id="gal-helpers"></div>
+    <div class="gallery rv" id="gal-equip" style="margin-top:10px"></div>
+  </div>
+</section>
+
+<!-- ══════════ 경제 ══════════ -->
+<section class="alt" id="economy">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="kicker">Economy</div>
+      <h2>숫자가 서로를 참조하는 경제</h2>
+      <p>이자율은 신용등급을 보고, 신용등급은 전투력을 보고, 주식 기준가는 전체 통화량을 봅니다.</p>
+    </div>
+
+    <div class="grid g2 rv" style="align-items:start">
+      <div>
+        <h3 style="font-size:1.25rem;font-weight:900;margin:0 0 14px">🏢 부동산 — 시간당 자동 수입</h3>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>사업체</th><th>구입가</th><th>시간당 수입</th></tr></thead>
+            <tbody>
+              <tr><td>🏮 포장마차</td><td>500만</td><td><b>20만</b></td></tr>
+              <tr><td>🍢 분식집</td><td>3,000만</td><td><b>100만</b></td></tr>
+              <tr><td>☕ 카페</td><td>1.5억</td><td><b>450만</b></td></tr>
+              <tr><td>🍽️ 고급 식당</td><td>8억</td><td><b>2,200만</b></td></tr>
+              <tr><td>🏬 상가 빌딩</td><td>50억</td><td><b>1.3억</b></td></tr>
+              <tr><td>🏝️ 리조트 호텔</td><td>300억</td><td><b>7.5억</b></td></tr>
+              <tr><td>🎢 테마파크</td><td>1,500억</td><td><b>34억</b></td></tr>
+              <tr><td>🚀 우주 엘리베이터</td><td>8,000억</td><td><b>160억</b></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note">수금은 <code>!일일</code> 버튼 한 번으로 전부 한꺼번에 됩니다.</div>
+      </div>
+
+      <div>
+        <h3 style="font-size:1.25rem;font-weight:900;margin:0 0 14px">🏦 금융 · 투자</h3>
+        <div class="grid" style="gap:12px">
+          <div class="card" style="padding:18px">
+            <h3 style="font-size:1rem">🐌 중앙은행 · 상업은행</h3>
+            <p>중앙은행이 통화량을 보고 <b>기준금리</b>를 정하고, 저축특화 · 대출특화 등 은행을 골라 가입합니다. 정기예금(7/14/30일)은 묶는 대신 고이자.</p>
+          </div>
+          <div class="card" style="padding:18px">
+            <h3 style="font-size:1rem">📈 주식 8종목 + 길드 주식</h3>
+            <p>5분마다 시세가 움직이고 손익이 추적됩니다. <b>지정가 예약 매매</b>, 가격 추이 그래프, 수수료 2%까지 그대로.</p>
+          </div>
+          <div class="card" style="padding:18px">
+            <h3 style="font-size:1rem">🛡️ 보험 · 대출</h3>
+            <p>사망 · 예금자 · 자산 보험에 들면 사고가 나도 자동 보상. 대출은 신용등급별 한도 · 이자 · 기한이 다르고 연체하면 2배입니다.</p>
+          </div>
+          <div class="card" style="padding:18px">
+            <h3 style="font-size:1rem">🎲 미니게임 <b id="n-games">8</b>종 · 환원율 <b id="n-rtp">92~95</b>%</h3>
+            <p>슬롯 · 하이로우 · 도박 · 코인 · 경마 · 주사위 등의 환원율을 <b>배당표에서 직접 역산</b>해 맞췄습니다. 100%를 넘는 게임이 하나도 없어서, <b>특정 미니게임만 반복하면 이득인 구멍이 없습니다.</b></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 시즌 ══════════ -->
+<section id="season">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="kicker">Season</div>
+      <h2><b id="n-months">2</b>개월마다, 모두 같은 출발선</h2>
+      <p>먼저 시작한 사람이 영원히 앞서는 게임은 새 유저가 들어올 수 없습니다. 시즌은 그걸 막습니다.</p>
+    </div>
+    <div class="grid g3 rv">
+      <div class="card">
+        <div class="ico">🔄</div>
+        <h3>리셋되는 것</h3>
+        <p>강화 · 각성 · 환생 · 레벨 · 골드 · 은행 · 주식 · 부동산 · 탑 기록 등 <b>이번 시즌의 진행도</b>. 길드 자본과 부채도 정리됩니다.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🔒</div>
+        <h3>남는 것</h3>
+        <p>펫 · 룬 · 도감 · 보석 · 칭호 · 업적 · 평생 기록. <b>모아 온 수집품과 명예는 사라지지 않습니다.</b></p>
+      </div>
+      <div class="card">
+        <div class="ico">⚖️</div>
+        <h3>이월은 딱 20%까지</h3>
+        <p>창고에 쌓아 둔 아이템은 <b>20%</b>만, 그것도 품목별 상한 안에서만 넘어갑니다. 시즌 말에 사재기하는 <b>꼼수가 통하지 않도록</b> 설계했습니다.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🎟️</div>
+        <h3>시즌패스 <b id="n-tiers">50</b>티어</h3>
+        <p>플레이만 해도 오르는 무료 트랙과, 더 두툼한 프리미엄 트랙. 매 티어마다 받을 것이 있습니다.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🏅</div>
+        <h3>시즌 상위 보상</h3>
+        <p>시즌이 끝나면 랭킹 상위에게 전용 칭호와 보상이 지급됩니다. 다음 시즌으로 넘어가는 건 <b>실력의 증거</b>뿐입니다.</p>
+      </div>
+      <div class="card">
+        <div class="ico">📅</div>
+        <h3>한국 시간 기준</h3>
+        <p>일일 초기화 · 출석 · 시즌 경계가 전부 <b>KST 자정</b>입니다. 호스팅 서버가 어디에 있든 한국 시간으로 돕니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 시작하기 ══════════ -->
+<section class="alt" id="start">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="kicker">Get Started</div>
+      <h2>3분이면 첫 던전까지</h2>
+      <p>설치도, 가입도, 결제도 없습니다. 초대하고 한 줄만 치면 시작됩니다.</p>
+    </div>
+    <div class="steps rv">
+      <div class="step">
+        <div class="n">1</div>
+        <h3>봇 초대</h3>
+        <p>위 <b>초대하기</b> 버튼으로 내 서버에 추가. 슬래시 명령어는 자동으로 등록됩니다.</p>
+      </div>
+      <div class="step">
+        <div class="n">2</div>
+        <h3><code>!시작</code></h3>
+        <p>게임 안내와 <b>스타터팩</b>을 받습니다. 이어서 <code>!일일</code>로 출석 · 지원금 · 룰렛을 한 번에.</p>
+      </div>
+      <div class="step">
+        <div class="n">3</div>
+        <h3><code>!허브</code></h3>
+        <p>강화 · 던전 · 경제 · 길드를 <b>메시지 하나</b>에서 오갑니다. 외울 명령어가 없습니다.</p>
+      </div>
+    </div>
+    <div class="note rv" style="max-width:760px;margin:26px auto 0;text-align:center">
+      💡 서버 관리자라면 <code>!설정</code> 한 번으로 <b>시세-공지 채널</b>이 자동 생성되고,
+      15분마다 암시장 · 주식 시세가 올라옵니다. <code>!게임채널</code>로 게임을 특정 채널에만 묶을 수도 있습니다.
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 명령어 탐색기 ══════════ -->
+<section id="commands">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="kicker">Commands</div>
+      <h2>명령어 <b id="n-cmds">128</b>종, 전부 <span class="grad">한국어</span></h2>
+      <p><code>!</code> 와 <code>/</code> 둘 다 됩니다. 검색해 보세요 — 봇 안에서는 <code>/도움말</code>이 같은 내용을 드롭다운으로 보여줍니다.</p>
+    </div>
+    <div class="cmd-tools rv">
+      <label class="search">🔍<input id="q" type="search" placeholder="명령어 · 설명으로 검색 (예: 던전, 주식, 낚시)" autocomplete="off" /></label>
+    </div>
+    <div class="chips rv" id="chips"></div>
+    <div class="cmd-list" id="cmdlist"></div>
+    <div class="cmd-more"><button class="btn btn-ghost btn-sm" id="more">더 보기</button></div>
+  </div>
+</section>
+
+<!-- ══════════ FAQ ══════════ -->
+<section class="alt" id="faq">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="kicker">FAQ</div>
+      <h2>자주 묻는 것들</h2>
+    </div>
+    <div class="faq rv">
+      <details open>
+        <summary>정말 전부 무료인가요?</summary>
+        <p>네. 현금 결제 요소가 없습니다. 보석(💎) 같은 재화도 출석 · 업적 · 던전 · 투표 보상으로 얻습니다. 게임 내 재화는 <b>현실의 금전 가치가 없고</b> 현금 거래 대상이 아닙니다.</p>
+      </details>
+      <details>
+        <summary>슬래시(/) 명령어가 안 보여요.</summary>
+        <p>디스코드가 슬래시 명령어를 서버에 반영하는 데 시간이 걸릴 수 있습니다. 잠시 뒤 다시 확인하거나, 그동안 <code>!</code> 접두사로 동일하게 쓰실 수 있습니다.</p>
+      </details>
+      <details>
+        <summary>봇이 채팅을 도배하지 않나요?</summary>
+        <p><code>!허브</code>는 새 메시지를 쌓지 않고 <b>같은 메시지를 제자리에서 갈아끼웁니다.</b> 서버 관리자는 <code>!게임채널</code>로 게임 명령어를 특정 채널에만 허용할 수 있습니다.</p>
+      </details>
+      <details>
+        <summary>어떤 권한이 필요한가요?</summary>
+        <p>초대 링크는 편의를 위해 관리자 권한을 요청합니다(채널 자동 생성 · 시세 공지 정리 등). 최소 권한으로 운영하고 싶다면 권한을 줄여 초대해도 되며, 그 경우 자동화 일부만 생략됩니다.</p>
+      </details>
+      <details>
+        <summary>내 데이터는 어떻게 다뤄지나요?</summary>
+        <p>게임 진행에 필요한 최소 정보(디스코드 ID · 게임 데이터)만 저장합니다. 이메일 · 전화번호 · 결제 정보는 <b>일절 수집하지 않습니다.</b> 자세한 내용은 <a data-link="privacy" href="#" style="color:var(--gold)">개인정보 처리방침</a>을 확인해 주세요.</p>
+      </details>
+      <details>
+        <summary>시즌이 초기화되면 다 날아가나요?</summary>
+        <p>아닙니다. 진행도(강화 · 재화 · 기록)는 리셋되지만 <b>펫 · 룬 · 도감 · 보석 · 칭호 · 업적</b>은 그대로 남습니다. 보유 아이템도 20%까지 이월됩니다.</p>
+      </details>
+      <details>
+        <summary>버그를 찾았어요 / 문의하고 싶어요.</summary>
+        <p><a data-link="support" href="#" style="color:var(--gold)">서포트 서버</a>에 오시면 됩니다. 봇 안에서 <code>!정보</code>를 치면 공식 링크가 모두 나옵니다.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CTA ══════════ -->
+<section>
+  <div class="wrap">
+    <div class="band rv">
+      <h2>오늘 저녁, 서버에 세계 하나를 띄워 보세요</h2>
+      <p>초대하고 <code>!시작</code> 한 줄. 그게 전부입니다.</p>
+      <div class="cta">
+        <a class="btn btn-primary" data-link="invite" href="#">⚔️ 서버에 초대하기</a>
+        <a class="btn btn-ghost" data-link="support" href="#">💬 서포트 서버</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 푸터 ══════════ -->
 <footer>
   <div class="wrap">
     <div class="foot">
-      <div class="logo"><span class="mark">⚔️</span> 강화 RPG</div>
-      <div style="display:flex;gap:22px;flex-wrap:wrap">
-        <a href="#invite-link" id="foot-invite">봇 초대</a>
-        <a href="#koreanbots-link" id="foot-kb">한국 디스코드 리스트</a>
-        <a href="#support-link" id="foot-support">지원 서버</a>
+      <div>
+        <a class="brand" href="#top"><img src="./assets/mark.png" alt="" /><b>도롱뇽</b><span class="tagchip">강화 RPG</span></a>
+        <p style="color:var(--dim);font-size:.86rem;margin:12px 0 0;max-width:30em">
+          디스코드에서 돌아가는 한국어 성장형 RPG 게임봇.
+        </p>
+      </div>
+      <div class="links">
+        <a data-link="invite" href="#">봇 초대</a>
+        <a data-link="koreanbots" href="#">한국 디스코드 리스트</a>
+        <a data-link="support" href="#">서포트 서버</a>
+        <a href="./terms.html">이용약관</a>
         <a href="./privacy.html">개인정보 처리방침</a>
       </div>
     </div>
     <p class="credit">
-      © 2026 강화 RPG. 디스코드 게임봇.<br>
-      Built with <a href="https://github.com/Rapptz/discord.py" style="color:var(--muted);text-decoration:underline">discord.py</a> (MIT, Rapptz)
-      및 <a href="https://www.anthropic.com" style="color:var(--muted);text-decoration:underline">Anthropic Claude API</a>.
-      Discord 는 Discord Inc. 의 상표입니다.
+      © 2026 도롱뇽 (강화 RPG). 디스코드 게임봇.<br />
+      Built with <a href="https://github.com/Rapptz/discord.py">discord.py</a> (MIT, © Rapptz).
+      일부 AI 기능에 <a href="https://www.anthropic.com">Anthropic Claude API</a> ·
+      <a href="https://ai.google.dev">Google Gemini API</a> 를 사용합니다.
+      Discord 는 Discord Inc. 의 상표이며 본 서비스는 Discord Inc. 와 제휴 관계가 없습니다.
     </p>
   </div>
 </footer>
 
-<script>
-  /* === 링크 설정: 아래 3개만 본인 것으로 바꾸세요 === */
-  const INVITE_URL     = "https://discord.com/api/oauth2/authorize?client_id=1312263637078900816&permissions=8&scope=bot%20applications.commands";
-  const KOREANBOTS_URL = "https://koreanbots.dev/bots/1312263637078900816";
-  const SUPPORT_URL    = "https://discord.gg/mPb6EAp5EK"; /* 지원(서포트) 디스코드 서버 초대 링크로 교체 */
-
-  document.querySelectorAll('[id$="-invite"]').forEach(a=>a.href=INVITE_URL);
-  document.querySelectorAll('[id$="-kb"]').forEach(a=>a.href=KOREANBOTS_URL); 
-  document.querySelectorAll('[id$="-support"]').forEach(a=>a.href=SUPPORT_URL);
-  document.getElementById('foot-kb').href=KOREANBOTS_URL; 
-  document.getElementById('foot-support').href=SUPPORT_URL;
-  document.getElementById('foot-invite').href=INVITE_URL;
-</script>
+<script src="./data/bot-data.js"></script>
+<script src="./assets/art.js"></script>
+<script src="./assets/site.js"></script>
 </body>
 </html>
