@@ -64,13 +64,28 @@
     }).join("");
   }
 
-  /* 본문 곳곳의 인라인 숫자 — id 하나에 값 하나 */
+  /* 본문 곳곳의 인라인 숫자 — id 하나에 값 하나.
+     ⚠️ 본문에 숫자를 **손으로 적어 두면 반드시 거짓말이 된다.** 실제로 그랬다:
+        "직업 7트리 × 스킬 4개" 는 스킬이 5개가 된 뒤에도 4개였고,
+        "칭호 68종" 은 75종이 된 뒤에도 68이었다. 숫자는 전부 여기로 흐르게 한다. */
   var FILL = {
     "n-img": S.images, "n-helpers": S.helpers, "n-equips": S.equips,
-    "n-pity": S.pity, "n-months": S.season_months, "n-games": S.minigames,
+    "n-helpers2": S.helpers, "n-equips2": S.equips,
+    "n-pets": S.pets, "n-pets2": S.pets, "n-gifs": S.gifs,
+    "n-awaken": S.awaken, "n-awaken2": S.awaken,
+    "n-jobs": S.jobs, "n-jobs2": S.jobs, "n-jobskills": S.job_skills,
+    "n-runes": S.runes, "n-runetier": S.rune_tier,
+    "n-slots": S.rune_slots, "n-slots2": S.rune_slots,
+    "n-fish": S.fish, "n-ores": S.ores,
+    "n-ach": S.achievements, "n-titles": S.titles,
+    "n-stocks": S.stocks, "n-stocks2": S.stocks, "n-props": S.props,
+    "n-hidden": S.hidden, "n-hiddencats": S.hidden_cats, "n-pets3": S.pets,
+    "n-pity": S.pity, "n-pity2": S.pity, "n-months": S.season_months,
+    "n-games": S.minigames, "n-games2": S.minigames,
     /* 환원율은 정책값(95%)이 아니라 **실측 범위**를 쓴다 — 게임마다 배당표가 달라
        실제로는 92~95% 로 흩어지고, 95% 단독 표기는 과장이 된다. */
     "n-rtp": (S.rtp_min === S.rtp_max ? S.rtp_max : S.rtp_min + "~" + S.rtp_max),
+    "n-rtp2": (S.rtp_min === S.rtp_max ? S.rtp_max : S.rtp_min + "~" + S.rtp_max),
     "n-tiers": S.season_tiers, "n-cmds": S.commands_pub
   };
   Object.keys(FILL).forEach(function (id) {
@@ -117,7 +132,7 @@
   }
 
   /* ── ⑤ 아트 갤러리 ── */
-  var ART = window.ART || { helpers: [], equip: [] };
+  var ART = window.ART || { helpers: [], equip: [], pets: [] };
   function gallery(id, list, base) {
     var el = document.getElementById(id);
     if (!el) return;
@@ -129,6 +144,7 @@
   }
   gallery("gal-helpers", ART.helpers, "helpers");
   gallery("gal-equip", ART.equip, "equip");
+  gallery("gal-pets", ART.pets || [], "pets");
 
   /* ── ⑥ 명령어 탐색기 ── */
   var CHUNK = 24;

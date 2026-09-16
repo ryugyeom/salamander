@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>도롱뇽 · 강화 RPG — 디스코드에서 돌아가는 성장형 RPG</title>
-<meta name="description" content="강화 · 각성 · 환생으로 끝없이 강해지는 디스코드 RPG 게임봇. 던전 · 무한의 탑 · 길드 · 주식 · 부동산 · 가챠까지 275개 명령어로 즐기는 하나의 세계. 완전 무료." />
+<meta name="description" content="강화 · 각성 · 환생으로 끝없이 강해지는 디스코드 RPG 게임봇. 던전 · 무한의 탑 · 길드 · 주식 · 부동산 · 가챠까지 276개 명령어로 즐기는 하나의 세계. 완전 무료." />
 <meta name="theme-color" content="#f2a33c" />
 <link rel="icon" href="./assets/favicon.png" />
 <link rel="apple-touch-icon" href="./assets/mark.png" />
@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
 <link rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css" />
-<link rel="stylesheet" href="./assets/site.css" />
+<link rel="stylesheet" href="./assets/site.css?v=fb4aeae8" />
 <!-- 등장 애니메이션은 JS 가 살아 있을 때만 건다. 이 한 줄이 없으면 스크립트가
      막힌 환경에서 .rv 가 opacity:0 인 채 남아 **페이지 전체가 백지**로 보인다. -->
 <script>document.documentElement.className += " js";</script>
@@ -128,19 +128,19 @@
       <div class="card">
         <div class="ico">♾️</div>
         <h3>끝이 없는 성장 곡선</h3>
-        <p>+32강 만강 → 각성 10단계 → 환생 → 소울강화 → 룬 6소켓 → 직업 7트리. 축이 <b>10개 넘게</b> 쌓여서, 오늘의 한계가 내일의 출발선이 됩니다.</p>
+        <p>+32강 만강 → 각성 <b id="n-awaken">10</b>단계 → 환생 → 소울강화 → 룬 <b id="n-slots">6</b>소켓 → 직업 <b id="n-jobs">7</b>트리. 축이 <b>10개 넘게</b> 쌓여서, 오늘의 한계가 내일의 출발선이 됩니다.</p>
         <div class="tags"><code>!강화</code><code>!각성</code><code>!환생</code><code>!환생상점</code></div>
       </div>
       <div class="card">
         <div class="ico">🎨</div>
         <h3>전부 손으로 그린 게임</h3>
-        <p>조력자 초상 36종, 장비 일러스트 51종을 포함해 <b id="n-img">194</b>장의 아트와 연출 GIF 10종. 뽑기는 두드리기 모션으로 열리고, 유니크 장비는 <b>제작하는 순간 그림이 생성</b>됩니다.</p>
+        <p>조력자 초상 <b id="n-helpers2">36</b>종, 장비 <b id="n-equips2">51</b>종, 펫 <b id="n-pets">32</b>종을 포함해 <b id="n-img">194</b>장의 아트와 연출 GIF <b id="n-gifs">10</b>종. 뽑기는 두드리기 모션으로 열리고, 유니크 장비는 <b>제작하는 순간 그림이 생성</b>됩니다.</p>
         <div class="tags"><code>!조력자 뽑기</code><code>!장비 정보</code><code>!제작</code></div>
       </div>
       <div class="card">
         <div class="ico">🏦</div>
         <h3>진짜로 굴러가는 경제</h3>
-        <p>중앙은행 기준금리, 상업은행 선택, 정기예금, 신용등급 대출, 8종목 주식(길드 주식 포함), 8단계 부동산, 유저 장터까지. 숫자가 <b>서로를 참조</b>합니다.</p>
+        <p>중앙은행 기준금리, 상업은행 선택, 정기예금, 신용등급 대출, <b id="n-stocks">8</b>종목 주식(길드 주식 포함), <b id="n-props">8</b>단계 부동산, 유저 장터까지. 숫자가 <b>서로를 참조</b>합니다.</p>
         <div class="tags"><code>!자산</code><code>!주식</code><code>!부동산</code><code>!장터</code></div>
       </div>
       <div class="card">
@@ -150,10 +150,22 @@
         <div class="tags"><code>!허브</code><code>!일일</code><code>!받기</code></div>
       </div>
       <div class="card">
+        <div class="ico">🔮</div>
+        <h3>조건을 알려주지 않는 발견</h3>
+        <p>어떻게 얻는지 <b>아무 데도 적혀 있지 않은</b> 히든 피스 <b id="n-hidden">152</b>종이 <b id="n-hiddencats">9</b>개 분야에 숨어 있습니다. 평소처럼 놀다가 어느 순간 툭 튀어나오고, <b>서버 최초 발견자</b>는 보상 5배와 명예의 전당 등재를 가져갑니다.</p>
+        <div class="tags"><code>!히든</code></div>
+      </div>
+      <div class="card">
         <div class="ico">🏰</div>
         <h3>서버끼리 겨루는 사회</h3>
         <p>길드 생성 · 계급 · 버프 · 레이드 · 길드전, 그리고 길드가 <b>주식을 발행</b>해 자본을 조달합니다. 전 서버 월드 채팅과 공동 복권으로 옆 서버와도 이어집니다.</p>
         <div class="tags"><code>!길드</code><code>!아레나</code><code>!전체</code></div>
+      </div>
+      <div class="card">
+        <div class="ico">🎲</div>
+        <h3>확률을 숨기지 않습니다</h3>
+        <p>강화 단계별 성공·파괴 확률, 가챠 등급 확률과 <b id="n-pity2">50</b>회 천장, 미니게임 <b id="n-games2">8</b>종의 환원율(<b id="n-rtp2">92~95</b>%)까지 전부 공개돼 있고, 봇 안에서도 <code>!확률</code>·<code>!강화표</code>로 언제든 확인합니다.</p>
+        <div class="tags"><code>!확률</code><code>!강화표</code></div>
       </div>
       <div class="card">
         <div class="ico">🗓️</div>
@@ -189,10 +201,10 @@
           <p>강화는 실패하면 떨어지고, 일정 구간부터는 <b>파괴</b>도 납니다. 보호권 · 연마제 · 행운부적으로 위험을 사서 줄이는 것까지가 게임입니다.</p>
           <ul class="plist">
             <li><span class="ic">🗡️</span><span><b>강화 +32 만강</b> — 조력자(ATK) · 갑옷(HP) 각각. 단계별 확률표는 <code>!강화표</code>에 전부 공개</span></li>
-            <li><span class="ic">🌟</span><span><b>각성 10단계</b> — 만강 이후 해금. 별(⭐) 하나마다 배율이 붙습니다</span></li>
+            <li><span class="ic">🌟</span><span><b>각성 <span id="n-awaken2">10</span>단계</b> — 만강 이후 해금. 별(⭐) 하나마다 배율이 붙습니다</span></li>
             <li><span class="ic">♻️</span><span><b>환생</b> — 전부 되돌리는 대신 영구 배율과 환생석을 얻습니다</span></li>
-            <li><span class="ic">🧭</span><span><b>직업 7트리 × 스킬 4개</b> — 검 · 방 · 암 · 궁 · 마 · 혈 · 상</span></li>
-            <li><span class="ic">💠</span><span><b>룬 6계열 · 5티어 · 6소켓</b> — 같은 계열로 채우면 세트 효과</span></li>
+            <li><span class="ic">🧭</span><span><b>직업 <span id="n-jobs2">7</span>트리 × 스킬 <span id="n-jobskills">5</span>개</b> — 검 · 방 · 암 · 궁 · 마 · 혈 · 상</span></li>
+            <li><span class="ic">💠</span><span><b>룬 <span id="n-runes">6</span>계열 · <span id="n-runetier">5</span>티어 · <span id="n-slots2">6</span>소켓</b> — 같은 계열로 채우면 세트 효과</span></li>
           </ul>
           <a class="btn btn-ghost btn-sm" href="#commands">성장 명령어 보기</a>
         </div>
@@ -273,11 +285,11 @@
           <h3>칼을 들지 않아도 부자가 됩니다</h3>
           <p>전투가 내키지 않는 날에도 할 일이 있습니다. 낚시와 광질은 도감으로 쌓이고, 도감을 채우면 영구 보상이 붙습니다.</p>
           <ul class="plist">
-            <li><span class="ic">🎣</span><span><b>낚시 48종</b> — 낚싯대를 키우면 잡히는 어종이 달라집니다</span></li>
-            <li><span class="ic">⛏️</span><span><b>광질 44종</b> — 캔 광석은 제작 재료이자 판매 수익</span></li>
+            <li><span class="ic">🎣</span><span><b>낚시 <span id="n-fish">48</span>종</b> — 낚싯대를 키우면 잡히는 어종이 달라집니다</span></li>
+            <li><span class="ic">⛏️</span><span><b>광질 <span id="n-ores">44</span>종</b> — 캔 광석은 제작 재료이자 판매 수익</span></li>
             <li><span class="ic">🏛️</span><span><b>유적 탐사</b> — 깊이 들어갈수록 보상이 커지고 귀환 판단이 중요해집니다</span></li>
-            <li><span class="ic">🐾</span><span><b>펫 32종</b> — 수집 · 레벨업 · 장착 효과</span></li>
-            <li><span class="ic">🏆</span><span><b>업적 63개 · 칭호 68종</b> — 전투력에 붙는 보너스가 달린 칭호도 있습니다</span></li>
+            <li><span class="ic">🐾</span><span><b>펫 <span id="n-pets2">32</span>종</b> — 수집 · 레벨업 · 장착 효과 (전 종류 일러스트)</span></li>
+            <li><span class="ic">🏆</span><span><b>업적 <span id="n-ach">63</span>개 · 칭호 <span id="n-titles">68</span>종</b> — 전투력에 붙는 보너스가 달린 칭호도 있습니다</span></li>
           </ul>
           <a class="btn btn-ghost btn-sm" href="#commands">생활 명령어 보기</a>
         </div>
@@ -382,10 +394,11 @@
     <div class="sec-head rv">
       <div class="kicker">Artwork</div>
       <h2>전부 인게임에 들어 있는 그림입니다</h2>
-      <p>조력자 <b id="n-helpers">36</b>종 · 장비 <b id="n-equips">51</b>종. <code>!장비 정보</code>로 카드를 펼치면 이 그림이 그대로 뜹니다.</p>
+      <p>조력자 <b id="n-helpers">36</b>종 · 장비 <b id="n-equips">51</b>종 · 펫 <b id="n-pets3">32</b>종. <code>!장비 정보</code>·<code>!펫</code>으로 카드를 펼치면 이 그림이 그대로 뜹니다.</p>
     </div>
     <div class="gallery rv" id="gal-helpers"></div>
     <div class="gallery rv" id="gal-equip" style="margin-top:10px"></div>
+    <div class="gallery rv" id="gal-pets" style="margin-top:10px"></div>
   </div>
 </section>
 
@@ -427,7 +440,7 @@
             <p>중앙은행이 통화량을 보고 <b>기준금리</b>를 정하고, 저축특화 · 대출특화 등 은행을 골라 가입합니다. 정기예금(7/14/30일)은 묶는 대신 고이자.</p>
           </div>
           <div class="card" style="padding:18px">
-            <h3 style="font-size:1rem">📈 주식 8종목 + 길드 주식</h3>
+            <h3 style="font-size:1rem">📈 주식 <span id="n-stocks2">8</span>종목 + 길드 주식</h3>
             <p>5분마다 시세가 움직이고 손익이 추적됩니다. <b>지정가 예약 매매</b>, 가격 추이 그래프, 수수료 2%까지 그대로.</p>
           </div>
           <div class="card" style="padding:18px">
@@ -618,8 +631,8 @@
   </div>
 </footer>
 
-<script src="./data/bot-data.js"></script>
-<script src="./assets/art.js"></script>
-<script src="./assets/site.js"></script>
+<script src="./data/bot-data.js?v=a32063d1"></script>
+<script src="./assets/art.js?v=7553c046"></script>
+<script src="./assets/site.js?v=cd53f4b6"></script>
 </body>
 </html>

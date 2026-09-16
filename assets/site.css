@@ -302,6 +302,11 @@ h1 {
   font-size: .72rem; font-weight: 700; opacity: 0; transition: .24s;
 }
 .art:hover .cap { opacity: 1; }
+/* ⚠️ 캡션이 **호버에서만** 보이면 터치 기기에서는 영영 안 보인다 — 모바일 방문자는
+   어떤 그림이 무엇인지 알 수 없다. 포인터가 없는 기기에서는 항상 보여 준다. */
+@media (hover: none) {
+  .art .cap { opacity: 1; }
+}
 
 /* ══ 가챠 ══ */
 .gacha-grid { display: grid; grid-template-columns: 280px 1fr; gap: 40px; align-items: center; }
@@ -462,7 +467,11 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 60px; background: va
   .nav .links { display: none; }
   .nav .links.open {
     display: flex; flex-direction: column; position: absolute; top: 68px; left: 0; right: 0;
-    background: rgba(10, 11, 15, .98); border-bottom: 1px solid var(--line); padding: 12px 22px 18px; gap: 2px;
+    /* ⚠️ 98% 는 '거의 불투명' 이지 불투명이 아니다. 뒤에 있는 히어로 제목(900 굵기·금색
+       3rem)이 **또렷하게 비쳐** 메뉴 글자와 겹쳐 읽혔다. 메뉴는 완전히 가려야 한다. */
+    background: var(--bg); border-bottom: 1px solid var(--line);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, .55);
+    padding: 12px 22px 18px; gap: 2px; z-index: 5;
   }
   .burger { display: block; }
   .nav .go { display: none; }

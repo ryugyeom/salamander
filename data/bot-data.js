@@ -54,6 +54,17 @@ window.BOT = {
    "sub": []
   },
   {
+   "name": "각인",
+   "alias": [
+    "인각",
+    "engrave"
+   ],
+   "desc": "🔩 균열석으로 관통·연격 영구 강화",
+   "cat": "강화",
+   "slash": false,
+   "sub": []
+  },
+  {
    "name": "갑옷강화",
    "alias": [],
    "desc": "갑옷(HP)을 강화합니다 (!갑옷강화 [횟수] 로 반복)",
@@ -112,7 +123,7 @@ window.BOT = {
    "alias": [
     "곡괭이"
    ],
-   "desc": "",
+   "desc": "곡괭이 강화 (희귀 광물 확률↑)",
    "cat": "생활",
    "slash": false,
    "sub": []
@@ -131,7 +142,7 @@ window.BOT = {
     "광물함",
     "창고"
    ],
-   "desc": "",
+   "desc": "보유 광물 확인",
    "cat": "생활",
    "slash": false,
    "sub": []
@@ -139,7 +150,7 @@ window.BOT = {
   {
    "name": "광물판매",
    "alias": [],
-   "desc": "캔 광석을 한 번에 판매",
+   "desc": "광물 판매 — 이름/전체/등급(예: 일반, 희귀이하)",
    "cat": "생활",
    "slash": false,
    "sub": []
@@ -173,9 +184,20 @@ window.BOT = {
   {
    "name": "구매",
    "alias": [],
-   "desc": "상자/아이템 구매 (!구매 [품목] [수량])",
+   "desc": "상자/아이템 구매 (!구매 [품목] [수량/전부])",
    "cat": "금융",
    "slash": true,
+   "sub": []
+  },
+  {
+   "name": "균열",
+   "alias": [
+    "차원균열",
+    "rift"
+   ],
+   "desc": "🕳️ 균열 던전 — 피해 감쇠 보스(관통 필요), 균열석 획득",
+   "cat": "강화",
+   "slash": false,
    "sub": []
   },
   {
@@ -257,7 +279,7 @@ window.BOT = {
   {
    "name": "낚싯대강화",
    "alias": [],
-   "desc": "",
+   "desc": "낚싯대 강화 (희귀어 확률↑)",
    "cat": "생활",
    "slash": false,
    "sub": []
@@ -405,7 +427,7 @@ window.BOT = {
    "alias": [
     "어항"
    ],
-   "desc": "",
+   "desc": "어항(보유 물고기) 확인",
    "cat": "금융",
    "slash": false,
    "sub": []
@@ -413,7 +435,7 @@ window.BOT = {
   {
    "name": "물고기판매",
    "alias": [],
-   "desc": "잡은 물고기를 한 번에 판매",
+   "desc": "물고기 판매 — 이름/전체/등급(예: 잡어, 일반이하)",
    "cat": "생활",
    "slash": false,
    "sub": []
@@ -510,7 +532,7 @@ window.BOT = {
   {
    "name": "분해",
    "alias": [],
-   "desc": "필요 없는 장비를 분해해 제작 재료로 되돌리기",
+   "desc": "유니크 분해 → 보스파편",
    "cat": "제작",
    "slash": false,
    "sub": []
@@ -868,7 +890,7 @@ window.BOT = {
     "최적장착",
     "장비자동"
    ],
-   "desc": "보유 장비 중 가장 센 조합으로 한 번에 장착",
+   "desc": "전투력이 가장 높아지게 장비 자동 장착",
    "cat": "제작",
    "slash": false,
    "sub": []
@@ -928,7 +950,7 @@ window.BOT = {
     "장비업글",
     "기어강화"
    ],
-   "desc": "장비를 +15까지 강화 (등급별 비용·성공률)",
+   "desc": "장비(드롭/제작) 강화 → 스탯 상승",
    "cat": "제작",
    "slash": false,
    "sub": []
@@ -939,7 +961,7 @@ window.BOT = {
     "등급표",
     "장비확률"
    ],
-   "desc": "장비 등급 승급 — 상위 등급으로 승격",
+   "desc": "장비 등급 종류·스탯 배율·뽑기 확률 보기",
    "cat": "제작",
    "slash": false,
    "sub": []
@@ -950,7 +972,7 @@ window.BOT = {
     "장비가챠",
     "무기뽑기"
    ],
-   "desc": "",
+   "desc": "보스파편으로 장비 뽑기 (확률 등급)",
    "cat": "제작",
    "slash": false,
    "sub": []
@@ -958,7 +980,7 @@ window.BOT = {
   {
    "name": "장착",
    "alias": [],
-   "desc": "",
+   "desc": "유니크 장비/직업/스킬 장착 (번호)",
    "cat": "제작",
    "slash": false,
    "sub": []
@@ -1075,7 +1097,7 @@ window.BOT = {
    "alias": [
     "크래프트"
    ],
-   "desc": "",
+   "desc": "AI 유니크 아이템 제작",
    "cat": "제작",
    "slash": false,
    "sub": []
@@ -1114,7 +1136,7 @@ window.BOT = {
     "주간퀘스트수령",
     "위클리수령"
    ],
-   "desc": "",
+   "desc": "완료한 주간 퀘스트 보상 수령",
    "cat": "퀘스트",
    "slash": false,
    "sub": []
@@ -1125,7 +1147,7 @@ window.BOT = {
     "위클리퀘스트",
     "주간미션"
    ],
-   "desc": "",
+   "desc": "이번 주 주간 퀘스트 확인 (큰 보상!)",
    "cat": "퀘스트",
    "slash": false,
    "sub": []
@@ -1272,7 +1294,7 @@ window.BOT = {
   {
    "name": "퀘스트수령",
    "alias": [],
-   "desc": "",
+   "desc": "완료한 일일 퀘스트 보상 수령",
    "cat": "퀘스트",
    "slash": false,
    "sub": []
@@ -1291,7 +1313,7 @@ window.BOT = {
   {
    "name": "탐험수령",
    "alias": [],
-   "desc": "파견 보낸 탐험대의 보상 수령",
+   "desc": "탐험 보상 수령",
    "cat": "생활",
    "slash": false,
    "sub": []
@@ -1385,8 +1407,8 @@ window.BOT = {
   {
    "name": "해제",
    "alias": [],
-   "desc": "",
-   "cat": "펫",
+   "desc": "유니크 장착 해제 (무기/방어구/장신구/직업/스킬)",
+   "cat": "제작",
    "slash": false,
    "sub": []
   },
@@ -1434,13 +1456,25 @@ window.BOT = {
    "cat": "강화",
    "slash": true,
    "sub": []
+  },
+  {
+   "name": "히든",
+   "alias": [
+    "히든피스",
+    "비경",
+    "hidden"
+   ],
+   "desc": "🔮 찾아낸 히든 피스 (조건은 비공개)",
+   "cat": "칭호",
+   "slash": false,
+   "sub": []
   }
  ],
  "stats": {
-  "commands": 275,
-  "commands_top": 166,
-  "commands_pub": 128,
-  "commands_pub_all": 234,
+  "commands": 283,
+  "commands_top": 172,
+  "commands_pub": 131,
+  "commands_pub_all": 237,
   "slash": 99,
   "helpers": 36,
   "equips": 51,
@@ -1448,19 +1482,22 @@ window.BOT = {
   "fish": 48,
   "ores": 44,
   "achievements": 63,
-  "titles": 68,
+  "titles": 75,
   "jobs": 7,
+  "job_skills": 5,
+  "hidden": 152,
+  "hidden_cats": 9,
   "runes": 6,
   "rune_slots": 6,
   "rune_tier": 5,
-  "dungeons": 5,
+  "dungeons": 8,
   "tower_themes": 13,
   "zones": 6,
   "stocks": 8,
   "props": 8,
   "boxes": 6,
   "market": 32,
-  "images": 216,
+  "images": 290,
   "gifs": 10,
   "max_enh": 32,
   "awaken": 10,
