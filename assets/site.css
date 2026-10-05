@@ -289,11 +289,17 @@ h1 {
 
 /* ══ 아트 갤러리 ══ */
 .gallery { display: grid; grid-template-columns: repeat(8, 1fr); gap: 10px; }
+/* ⚠️ `<figure>` 는 브라우저 기본 여백(좌우 40px)이 있다 — 안 지우면 8칸 격자에서 그림이
+   칸의 절반 이하(실측 130px 칸에 51px)로 쪼그라든다. */
 .art {
+  margin: 0;
   position: relative; aspect-ratio: 1; border-radius: 13px; overflow: hidden;
   border: 1px solid var(--line); background: var(--surface); transition: .26s var(--ease);
 }
 .art img { width: 100%; height: 100%; object-fit: cover; transition: .4s var(--ease); }
+/* 🌍 장소 그림 — 가로형(2:1) 네 칸 */
+.gallery.wide { grid-template-columns: repeat(4, 1fr); }
+.gallery.wide .art { aspect-ratio: 2 / 1; }
 .art:hover { transform: translateY(-5px) scale(1.03); border-color: var(--gold); z-index: 2; box-shadow: 0 16px 38px rgba(0, 0, 0, .55); }
 .art:hover img { transform: scale(1.08); }
 .art .cap {
@@ -463,6 +469,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 60px; background: va
   .g4 { grid-template-columns: repeat(2, 1fr); }
   .g3 { grid-template-columns: repeat(2, 1fr); }
   .gallery { grid-template-columns: repeat(6, 1fr); }
+  .gallery.wide { grid-template-columns: repeat(2, 1fr); }
   .statbar { grid-template-columns: repeat(3, 1fr); }
   .nav .links { display: none; }
   .nav .links.open {
@@ -481,6 +488,7 @@ footer { border-top: 1px solid var(--line); padding: 48px 0 60px; background: va
   section { padding: 58px 0; }
   .g4, .g3, .g2, .steps, .cmd-list { grid-template-columns: 1fr; }
   .gallery { grid-template-columns: repeat(4, 1fr); }
+  .gallery.wide { grid-template-columns: 1fr; }
   .statbar { grid-template-columns: repeat(2, 1fr); }
   .embed .e-fields { grid-template-columns: 1fr; }
   .band { padding: 42px 22px; }

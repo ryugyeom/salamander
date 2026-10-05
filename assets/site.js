@@ -133,15 +133,17 @@
 
   /* ── ⑤ 아트 갤러리 ── */
   var ART = window.ART || { helpers: [], equip: [], pets: [] };
-  function gallery(id, list, base) {
+  function gallery(id, list, base, w, h) {
     var el = document.getElementById(id);
     if (!el) return;
+    w = w || 320; h = h || 320;
     el.innerHTML = list.map(function (a) {
       return '<figure class="art"><img src="./assets/art/' + base + "/" + a.f +
-             '" alt="' + a.n + '" loading="lazy" width="320" height="320">' +
+             '" alt="' + a.n + '" loading="lazy" width="' + w + '" height="' + h + '">' +
              '<figcaption class="cap">' + a.n + (a.g ? " · " + a.g : "") + "</figcaption></figure>";
     }).join("");
   }
+  gallery("gal-world", ART.world || [], "world", 480, 240);   /* 🌍 장소 그림은 가로형(2:1) */
   gallery("gal-helpers", ART.helpers, "helpers");
   gallery("gal-equip", ART.equip, "equip");
   gallery("gal-pets", ART.pets || [], "pets");

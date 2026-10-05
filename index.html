@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta name="google-site-verification" content="9AqPLJx5f8DGdffvMHLSV5hFbxPDkw_Q3LOEvnlQqE4" />
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>도롱뇽 · 강화 RPG — 디스코드에서 돌아가는 성장형 RPG</title>
-<meta name="description" content="강화 · 각성 · 환생으로 끝없이 강해지는 디스코드 RPG 게임봇. 던전 · 무한의 탑 · 길드 · 주식 · 부동산 · 가챠까지 300개 명령어로 즐기는 하나의 세계. 완전 무료." />
+<meta name="description" content="강화 · 각성 · 환생으로 끝없이 강해지는 디스코드 RPG 게임봇. 던전 · 무한의 탑 · 길드 · 주식 · 부동산 · 가챠까지 302개 명령어로 즐기는 하나의 세계. 완전 무료." />
 <meta name="theme-color" content="#f2a33c" />
 <link rel="icon" href="./assets/favicon.png" />
 <link rel="apple-touch-icon" href="./assets/mark.png" />
@@ -20,7 +19,7 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
 <link rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css" />
-<link rel="stylesheet" href="./assets/site.css?v=fb4aeae8" />
+<link rel="stylesheet" href="./assets/site.css?v=6b2efdc7" />
 <!-- 등장 애니메이션은 JS 가 살아 있을 때만 건다. 이 한 줄이 없으면 스크립트가
      막힌 환경에서 .rv 가 opacity:0 인 채 남아 **페이지 전체가 백지**로 보인다. -->
 <script>document.documentElement.className += " js";</script>
@@ -153,7 +152,7 @@
       <div class="card">
         <div class="ico">🔮</div>
         <h3>조건을 알려주지 않는 발견</h3>
-        <p>어떻게 얻는지 <b>아무 데도 적혀 있지 않은</b> 히든 피스 <b id="n-hidden">152</b>종이 <b id="n-hiddencats">9</b>개 분야에 숨어 있습니다. 평소처럼 놀다가 어느 순간 툭 튀어나오고, <b>서버 최초 발견자</b>는 보상 5배와 명예의 전당 등재를 가져갑니다.</p>
+        <p>어떻게 얻는지 <b>아무 데도 적혀 있지 않은</b> 히든 피스 <b id="n-hidden">152</b>종이 <b id="n-hiddencats">9</b>개 분야에 숨어 있습니다. 평소처럼 놀다가 어느 순간 툭 튀어나오고, <b>전국(모든 서버) 최초 발견자</b>는 보상 5배와 명예의 전당 등재를 가져갑니다.</p>
         <div class="tags"><code>!히든</code></div>
       </div>
       <div class="card">
@@ -396,7 +395,9 @@
       <div class="kicker">Artwork</div>
       <h2>전부 인게임에 들어 있는 그림입니다</h2>
       <p>조력자 <b id="n-helpers">36</b>종 · 장비 <b id="n-equips">51</b>종 · 펫 <b id="n-pets3">32</b>종. <code>!장비 정보</code>·<code>!펫</code>으로 카드를 펼치면 이 그림이 그대로 뜹니다.</p>
+      <p>🦎 그리고 <b>라임색 스카프의 도롱뇽</b>이 사는 세계 — 은행·대장간·아레나·무한의 탑… 각 장소의 첫 화면 아래에 그 장소가 깔리고, 강화·낚시·도박은 결과를 기다리는 동안 <b>움직이는 장면</b>이 떠요.</p>
     </div>
+    <div class="gallery wide rv" id="gal-world" style="margin-bottom:10px"></div>
     <div class="gallery rv" id="gal-helpers"></div>
     <div class="gallery rv" id="gal-equip" style="margin-top:10px"></div>
     <div class="gallery rv" id="gal-pets" style="margin-top:10px"></div>
@@ -446,7 +447,7 @@
           </div>
           <div class="card" style="padding:18px">
             <h3 style="font-size:1rem">🛡️ 보험 · 대출</h3>
-            <p>사망 · 예금자 · 자산 보험에 들면 사고가 나도 자동 보상. 대출은 신용등급별 한도 · 이자 · 기한이 다르고 연체하면 2배입니다.</p>
+            <p>사망 · 예금자 · 자산 보험에 들면 사고가 나도 자동 보상. 대출은 신용등급별 한도 · 이자 · 기한이 다르고 연체하면 이자가 2배가 되고, 은행 · 현금에서 자동 회수됩니다.</p>
           </div>
           <div class="card" style="padding:18px">
             <h3 style="font-size:1rem">🎲 미니게임 <b id="n-games">8</b>종 · 환원율 <b id="n-rtp">92~95</b>%</h3>
@@ -528,7 +529,7 @@
     </div>
     <div class="note rv" style="max-width:760px;margin:26px auto 0;text-align:center">
       💡 서버 관리자라면 <code>!설정</code> 한 번으로 <b>시세-공지 채널</b>이 자동 생성되고,
-      15분마다 암시장 · 주식 시세가 올라옵니다. <code>!게임채널</code>로 게임을 특정 채널에만 묶을 수도 있습니다.
+      5분마다 암시장 · 주식 시세가 올라옵니다. <code>!게임채널</code>로 게임을 특정 채널에만 묶을 수도 있습니다.
     </div>
   </div>
 </section>
@@ -632,8 +633,8 @@
   </div>
 </footer>
 
-<script src="./data/bot-data.js?v=4ab53dbf"></script>
-<script src="./assets/art.js?v=7553c046"></script>
-<script src="./assets/site.js?v=cd53f4b6"></script>
+<script src="./data/bot-data.js?v=97377afe"></script>
+<script src="./assets/art.js?v=14c3cd55"></script>
+<script src="./assets/site.js?v=1e2dd9c4"></script>
 </body>
 </html>

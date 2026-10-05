@@ -67,7 +67,7 @@ window.BOT = {
   {
    "name": "갑옷강화",
    "alias": [],
-   "desc": "갑옷(HP)을 강화합니다 (!갑옷강화 [횟수] 로 반복)",
+   "desc": "갑옷(HP)을 강화해요 (!갑옷강화 [횟수] 로 반복)",
    "cat": "강화",
    "slash": true,
    "sub": []
@@ -75,7 +75,7 @@ window.BOT = {
   {
    "name": "강화",
    "alias": [],
-   "desc": "조력자(ATK)를 강화합니다 (!강화 [횟수] 로 반복)",
+   "desc": "조력자(ATK)를 강화해요 (!강화 [횟수] 로 반복)",
    "cat": "시작하기",
    "slash": true,
    "sub": []
@@ -260,7 +260,7 @@ window.BOT = {
     "길드전쟁",
     "길드대전"
    ],
-   "desc": "길드전 — 다른 길드와 전과 누적 대결 (마스터: !길드전 선포 [상대])",
+   "desc": "길드전 — 다른 길드와 전과 누적 대결 (간부↑: !길드전 선포 [상대])",
    "cat": "길드",
    "slash": true,
    "sub": [
@@ -804,6 +804,17 @@ window.BOT = {
    "sub": []
   },
   {
+   "name": "연출",
+   "alias": [
+    "연출설정",
+    "애니메이션"
+   ],
+   "desc": "뽑기 두드리기·결과 연출(움직이는 장면) 켜기/끄기 — 데이터 절약",
+   "cat": "금융",
+   "slash": false,
+   "sub": []
+  },
+  {
    "name": "열기",
    "alias": [],
    "desc": "상자 개봉 — 버튼/수량 지원 (!열기 [상자] [개수/전체])",
@@ -1215,7 +1226,8 @@ window.BOT = {
    "name": "주식",
    "alias": [
     "증권",
-    "투자소"
+    "투자소",
+    "투자"
    ],
    "desc": "주식 투자 — 보기/매수/매도 (5분마다 변동)",
    "cat": "투자",
@@ -1325,8 +1337,7 @@ window.BOT = {
   {
    "name": "코인",
    "alias": [
-    "한탕코인",
-    "투자"
+    "한탕코인"
    ],
    "desc": "극단적 변동성 코인 한탕 (초떡상 x10)",
    "cat": "미니게임",
@@ -1548,10 +1559,10 @@ window.BOT = {
   }
  ],
  "stats": {
-  "commands": 300,
-  "commands_top": 177,
-  "commands_pub": 136,
-  "commands_pub_all": 254,
+  "commands": 302,
+  "commands_top": 179,
+  "commands_pub": 137,
+  "commands_pub_all": 255,
   "slash": 70,
   "helpers": 36,
   "equips": 51,
@@ -1574,8 +1585,8 @@ window.BOT = {
   "props": 8,
   "boxes": 6,
   "market": 38,
-  "images": 338,
-  "gifs": 10,
+  "images": 509,
+  "gifs": 25,
   "max_enh": 32,
   "awaken": 10,
   "equip_enh": 15,
